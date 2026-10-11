@@ -117,24 +117,30 @@ class _SideMenuItemTileState extends State<SideMenuItemTile> {
     final hasIcon = widget.data.icon != null;
     final hasTitle = widget.data.title != null;
     if (hasIcon && hasTitle) {
-      return Row(
-        children: [
-          _icon(),
-          if (widget.isOpen)
-            Expanded(
-              child: _title(context: context),
-            ),
-        ],
+      return Padding(
+        padding: widget.data.padding ?? EdgeInsetsDirectional.zero,
+        child: Row(
+          children: [
+            _icon(),
+            if (widget.isOpen)
+              Expanded(
+                child: _title(context: context),
+              ),
+          ],
+        ),
       );
     } else if (hasIcon) {
-      return Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: _icon(),
+      return Padding(
+        padding: widget.data.padding ?? EdgeInsetsDirectional.zero,
+        child: Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: _icon(),
+        ),
       );
     } else {
       return Container(
         alignment: AlignmentDirectional.centerStart,
-        padding: Constants.textStartPadding,
+        padding: widget.data.padding ?? Constants.textStartPadding,
         child: _title(context: context),
       );
     }

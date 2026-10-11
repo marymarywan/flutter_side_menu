@@ -36,6 +36,7 @@ class SideMenuItemDataTile extends SideMenuItemData {
     this.decoration,
     this.shape,
     this.clipBehavior = Clip.hardEdge,
+    this.padding,
   })  : assert(itemHeight >= 0.0),
         assert(icon != null || title != null),
         assert((highlightSelectedColor == null && decoration == null) ||
@@ -65,6 +66,12 @@ class SideMenuItemDataTile extends SideMenuItemData {
   final ShapeBorder? shape;
   final Clip clipBehavior;
 
+  /// Padding around the icon/title content, inside the tile's tappable
+  /// area. Defaults to no extra padding for icon rows, and
+  /// [Constants.textStartPadding] for title-only rows, matching the
+  /// library's previous (non-configurable) behavior.
+  final EdgeInsetsDirectional? padding;
+
   SideMenuItemDataTile resolveWith({
     final SideMenuItemTileDefaults? g,
   }) {
@@ -91,6 +98,7 @@ class SideMenuItemDataTile extends SideMenuItemData {
       selectedIcon: selectedIcon,
       tooltipBuilder: tooltipBuilder,
       tooltip: tooltip,
+      padding: padding,
     );
   }
 }
