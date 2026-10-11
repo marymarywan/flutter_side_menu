@@ -20,11 +20,13 @@ class SideMenuBody extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        if (data.header != null)
+        if (data.header != null) ...[
           _buildAnimatedPart(
             animData: data.animHeader,
             child: data.header!,
           ),
+          SizedBox(height: data.itemSpacing),
+        ],
         if (data.customChild != null)
           Expanded(
             flex: data.customChildFlex,
