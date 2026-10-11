@@ -32,6 +32,7 @@ class SideMenu extends StatefulWidget {
     this.resizerData,
     this.resizerToggleData,
     this.backgroundColor,
+    this.padding,
   })  : assert(minWidth >= 0.0),
         assert(maxWidth > 0.0),
         assert(priority == SideMenuPriority.sizer ? hasResizer : true),
@@ -125,6 +126,10 @@ class SideMenu extends StatefulWidget {
   /// The [backgroundColor] it's used to determine the side menu background
   /// color.
   final Color? backgroundColor;
+
+  /// The [padding] applied around the whole menu body (header, items,
+  /// footer), inside the resizer/toggle. Defaults to no padding.
+  final EdgeInsetsGeometry? padding;
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -230,10 +235,13 @@ class _SideMenuState extends State<SideMenu> with SideMenuWidthMixin {
         minWidth: widget.minWidth,
         maxWidth: widget.maxWidth,
       ),
-      child: SideMenuBody(
-        isOpen: _currentWidth != widget.minWidth,
-        minWidth: widget.minWidth,
-        data: _builder(),
+      child: Padding(
+        padding: widget.padding ?? EdgeInsets.zero,
+        child: SideMenuBody(
+          isOpen: _currentWidth != widget.minWidth,
+          minWidth: widget.minWidth,
+          data: _builder(),
+        ),
       ),
     );
   }
