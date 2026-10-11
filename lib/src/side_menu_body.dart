@@ -38,9 +38,11 @@ class SideMenuBody extends StatelessWidget {
           Expanded(
             child: _buildAnimatedPart(
               animData: data.animItems,
-              child: ListView.builder(
+              child: ListView.separated(
                 controller: ScrollController(),
                 itemCount: data.items!.length,
+                separatorBuilder: (context, index) =>
+                    SizedBox(height: data.itemSpacing),
                 itemBuilder: (context, index) {
                   final item = data.items![index];
                   return _buildSideMenuItem(item);

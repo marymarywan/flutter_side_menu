@@ -15,7 +15,9 @@ class SideMenuData {
     this.spacerAfterCustomChild,
     this.spacerAfterItems,
     this.defaultTileData,
-  }) : assert(customChild != null || items != null);
+    this.itemSpacing = 0,
+  })  : assert(customChild != null || items != null),
+        assert(itemSpacing >= 0.0);
 
   final Widget? customChild, header, footer;
   final List<SideMenuItemData>? items;
@@ -27,6 +29,10 @@ class SideMenuData {
   final Spacer? spacerAfterCustomChild;
   final Spacer? spacerAfterItems;
   final SideMenuItemTileDefaults? defaultTileData;
+
+  /// Vertical space inserted between consecutive [items]. Defaults to 0,
+  /// preserving prior behavior (items packed with no extra gap).
+  final double itemSpacing;
 }
 
 class SideMenuItemsAnimationData {
