@@ -225,15 +225,16 @@ class _SideMenuState extends State<SideMenu> with SideMenuWidthMixin {
   }
 
   Widget _content(Size size) {
+    final horizontalPadding = widget.padding?.horizontal ?? 0;
     return AnimatedContainer(
       duration: Constants.duration,
-      width: _currentWidth,
+      width: _currentWidth + horizontalPadding,
       color: widget.backgroundColor ?? Theme.of(context).colorScheme.surface,
       constraints: BoxConstraints(
         minHeight: size.height,
         maxHeight: size.height,
-        minWidth: widget.minWidth,
-        maxWidth: widget.maxWidth,
+        minWidth: widget.minWidth + horizontalPadding,
+        maxWidth: widget.maxWidth + horizontalPadding,
       ),
       child: Padding(
         padding: widget.padding ?? EdgeInsets.zero,
